@@ -132,6 +132,32 @@ To monitor Intel GPU activity:
 sudo intel_gpu_top
 ```
 
+## ⚙️ Enable Intel Quick Sync
+
+After starting Jellyfin, open the Jellyfin dashboard:
+
+**Dashboard → Playback → Transcoding**
+
+Set:
+
+* **Hardware acceleration:** `Intel QuickSync (QSV)`
+* **Enable hardware encoding:** ✅
+* Enable the required **hardware decoding** codecs.
+
+Then click **Save**.
+
+### Verify Hardware Transcoding
+
+Start a video that requires transcoding and run on the NUC:
+
+```bash
+sudo intel_gpu_top
+```
+
+You should see activity on the Intel GPU's **Video** engine during transcoding.
+
+> **Note:** Quick Sync must be enabled from the Jellyfin Dashboard after the container is started. The Docker Compose configuration only provides Jellyfin access to the Intel GPU through `/dev/dri`.
+
 ---
 
 ## 🚀 Installation
