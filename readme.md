@@ -139,8 +139,8 @@ sudo intel_gpu_top
 Clone the repository:
 
 ```bash
-git clone <YOUR-REPOSITORY-URL>
-cd <REPOSITORY-DIRECTORY>
+git clone https://github.com/GoravG/homelab.git
+cd homelab
 ```
 
 Start all services:
