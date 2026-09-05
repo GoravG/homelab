@@ -33,6 +33,22 @@ services:
       - /home/nuc/media:/downloads # Unified parent path for future hardlink support
     restart: unless-stopped
 
+  scrutiny:
+    image: ghcr.io/analogj/scrutiny:master-omnibus
+    container_name: scrutiny
+    restart: unless-stopped
+    ports:
+      - "8081:8080" # Web UI accessible at http://<your-nuc-ip>:8081
+    volumes:
+      - /run/udev:/run/udev:ro
+      - /home/nuc/scrutiny/config:/opt/scrutiny/config
+      - /home/nuc/scrutiny/data:/opt/scrutiny/influxdb
+    cap_add:
+      - SYS_RAWIO
+    devices:
+      # Maps your actual 465.8G SATA SSD into the container
+      - "/dev/sda:/dev/sda"
+
   dozzle:
     image: amir20/dozzle:latest
     container_name: dozzle
