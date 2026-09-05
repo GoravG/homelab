@@ -4,12 +4,13 @@ Lightweight Docker-based home media server running on an Intel NUC.
 
 ## 🔖 Service Bookmarks
 
-| Service            | URL                    |
-| ------------------ | ---------------------- |
-| 🎬 **Jellyfin**    | http://nuc.local:8096  |
-| 📥 **qBittorrent** | http://nuc.local:8080  |
-| 📋 **Dozzle**      | http://nuc.local:9999  |
-| 📊 **Glances**     | http://nuc.local:61208 |
+| Service              | URL                    |
+| -------------------- | ---------------------- |
+| 🎬 **Jellyfin**      | http://nuc.local:8096  |
+| 📥 **qBittorrent**   | http://nuc.local:8080  |
+| 💾 **Scrutiny**      | http://nuc.local:8081  |
+| 📋 **Dozzle**        | http://nuc.local:9999  |
+| 📊 **Glances**       | http://nuc.local:61208 |
 
 ---
 
@@ -60,7 +61,31 @@ The common `/home/nuc/media` parent directory keeps downloads and media on the s
 
 ---
 
-### 📋 Dozzle
+### � Scrutiny
+
+Disk health and SMART monitoring for the NUC storage drives.
+
+**URL:** http://nuc.local:8081
+
+Scrutiny watches the SSD and surfaces SMART status, temperature, and drive health metrics. This is useful for early warning signs like wear, reallocated sectors, or impending drive failure.
+
+Configuration and data directories:
+
+```text
+/home/nuc/scrutiny/config
+/home/nuc/scrutiny/data
+```
+
+The container is granted raw I/O access to the physical drive:
+
+```yaml
+devices:
+  - "/dev/sda:/dev/sda"
+```
+
+---
+
+### �📋 Dozzle
 
 Lightweight Docker container log viewer.
 
@@ -250,6 +275,10 @@ docker compose down
 ├── qbittorrent/
 │   └── config/
 │
+├── scrutiny/
+│   ├── config/
+│   └── data/
+│
 └── media/
     ├── movies/
     └── tv/
@@ -288,6 +317,10 @@ If exposing services outside the LAN, use appropriate authentication, HTTPS, and
 **Downloads**
 
 📥 [qBittorrent](http://nuc.local:8080)
+
+**Storage Health**
+
+💾 [Scrutiny](http://nuc.local:8081)
 
 **Logs**
 
