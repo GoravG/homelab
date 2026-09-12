@@ -73,12 +73,11 @@ services:
   suchi:
     image: goravg/suchi
     container_name: suchi
-    network_mode: host
     ports:
-      - "8081:80"
+      - "8082:80"
     volumes:
       - /home/nuc/media:/data:ro
     environment:
       SUCHI_DATA_ROOT: /data
-      SUCHI_ADDR: :80
+      SUCHI_ADDR: :8082
     restart: unless-stopped
