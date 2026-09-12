@@ -74,7 +74,7 @@ services:
     image: goravg/suchi
     container_name: suchi
     ports:
-      - "8082:80"
+      - "80:8082"
     volumes:
       - /home/nuc/media:/data:ro
     environment:
