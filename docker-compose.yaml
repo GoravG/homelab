@@ -69,3 +69,16 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/os-release:/etc/os-release:ro
     restart: unless-stopped
+
+  suchi:
+    image: goravg/suchi
+    container_name: suchi
+    network_mode: host
+    ports:
+      - "8081:80"
+    volumes:
+      - /home/nuc/media:/data:ro
+    environment:
+      - SUCHI_DATA_ROOT: /data
+      - SUCHI_ADDR: :80
+    restart: unless-stopped
