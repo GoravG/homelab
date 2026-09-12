@@ -79,6 +79,6 @@ services:
     volumes:
       - /home/nuc/media:/data:ro
     environment:
-      - SUCHI_DATA_ROOT: /data
-      - SUCHI_ADDR: :80
+      SUCHI_DATA_ROOT: /data
+      SUCHI_ADDR: :80
     restart: unless-stopped
