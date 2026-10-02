@@ -81,6 +81,8 @@ services:
       SUCHI_DATA_ROOT: /data
       SUCHI_ADDR: :8082
     restart: unless-stopped
+    labels:
+      dev.dozzle.url: http://nuc.local:80
   goseeit:
     image: goravg/goseeit:latest
     container_name: goseeit
