@@ -15,6 +15,8 @@ services:
     devices:
       - /dev/dri:/dev/dri
     restart: unless-stopped
+    labels:
+      goseeit.url: http://nuc.local:8096
 
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:libtorrentv1
@@ -32,6 +34,8 @@ services:
       - /home/nuc/qbittorrent/config:/config
       - /home/nuc/media:/downloads # Unified parent path for future hardlink support
     restart: unless-stopped
+    labels:
+      goseeit.url: http://nuc.local:8080
 
   scrutiny:
     image: ghcr.io/analogj/scrutiny:master-omnibus
@@ -48,6 +52,8 @@ services:
     devices:
       # Maps your actual 465.8G SATA SSD into the container
       - "/dev/sda:/dev/sda"
+    labels:
+      goseeit.url: http://nuc.local:8081
 
   dozzle:
     image: amir20/dozzle:latest
@@ -57,6 +63,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
+    labels:
+      goseeit.url: http://nuc.local:9999
 
   glances:
     image: nicolargo/glances:latest
@@ -69,6 +77,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/os-release:/etc/os-release:ro
     restart: unless-stopped
+    labels:
+      goseeit.url: http://nuc.local:61208
 
   suchi:
     image: goravg/suchi
@@ -137,3 +147,5 @@ services:
 
       # Intel GPU sysfs reader enabled
       - GOSEEIT_INTEL_GPU_ENABLED=true
+    labels:
+      goseeit.url: http://nuc.local:3333
